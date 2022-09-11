@@ -12,16 +12,37 @@
 
             <FormInput label="Password" placeholder="********" type="password" v-model="data.password" />
 
+            <button @click="handleLogin">
+                Login
+            </button>
+
         </div>
     </div>
 </template>
 
 <script setup>
+const { login } = useAuth()
+
 const data = reactive({
     username: '',
     password: '',
     loading: false
 })
+
+const handleLogin = () => {
+    data.loading = true
+
+    try {
+        login({
+            username: data.username,
+            password: data.password,
+        })
+    } catch (error) {
+        console.log(error)
+    } finally {
+        data.loading = false
+    }
+}
 </script>
 
 <style lang="scss" scoped>
