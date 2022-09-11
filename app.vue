@@ -1,7 +1,7 @@
 <template>
   <div :class="{ 'dark': darkMode }">
 
-    <div class="min-h-full">
+    <div v-if="false" class="min-h-full">
 
       <div class="grid grid-cols-12 mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:gap-5">
 
@@ -24,6 +24,8 @@
       </div>
 
     </div>
+
+    <MainAuthPageSection v-else/>
 
   </div>
 </template>
