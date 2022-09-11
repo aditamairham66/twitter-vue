@@ -1,5 +1,6 @@
 import { sendError } from 'h3'
-import { createData } from '~~/server/db/users'
+import { registerUsers } from '~~/server/db/Users'
+import { userTransformer } from '~~/server/transformers/Users'
 
 export default defineEventHandler(async (event) => {
     const body = await useBody(event)
@@ -22,9 +23,9 @@ export default defineEventHandler(async (event) => {
         profileImage: 'https://picsum.photos/200/200'
     }
 
-    const user = await createData(data)
+    const user = await registerUsers(data)
 
     return {
-        body
+        body: userTransformer(user)
     }
 })

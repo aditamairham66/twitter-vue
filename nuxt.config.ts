@@ -9,4 +9,8 @@ export default defineNuxtConfig({
     build: {
         transpile: ['@heroicons/vue']
     },
+
+    runtimeConfig: {
+        jwtSecret: process.env.JWT_SECRET,
+    }
 })
