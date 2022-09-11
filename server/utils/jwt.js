@@ -32,3 +32,13 @@ export const sendRefreshToken = (event, token) => {
         sameSite: true
     })
 } 
+
+export const decodeToken = (token) => {
+    const config = useRuntimeConfig()
+
+    try {
+        return jwt.verify(token, config.jwtSecret)
+    } catch (error) {
+        return null
+    }
+}

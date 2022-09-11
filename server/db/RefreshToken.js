@@ -5,3 +5,11 @@ export const saveToken = (dataToken) => {
         data: dataToken
     })
 }
+
+export const findByToken = (token) => {
+    return prisma.refreshToken.findUnique({
+        where: {
+            token
+        }
+    })
+}
