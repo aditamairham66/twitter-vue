@@ -1,9 +1,7 @@
 <template>
   <div :class="{ 'dark': darkMode }">
 
-    <div v-if="loading">
-      loading page
-    </div>
+    <LoadingPageLoading v-if="loading"/>
 
     <div v-else-if="user" class="min-h-full">
 
