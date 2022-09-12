@@ -37,10 +37,14 @@ const setUser = (user: any) => {
 
 const initAuth = () => {
     return new Promise(async (resolve, reject) => {
+        setLoading(true)
         try {
             await refreshToken()
+            await getUsers()
         } catch (error) {
             reject(error)
+        } finally {
+            setLoading(false)
         }
     })
 }
@@ -59,11 +63,33 @@ const refreshToken = () => {
     })
 }
 
+const getUsers = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const data = await useFetch<any>(`api/auth/users`)
+
+            setUser(data.user)
+
+            resolve(true)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+const useLoading = () => useState("auth_loading", () => true)
+
+const setLoading = (val: boolean) => {
+    const authLoading = useLoading()
+    authLoading.value = val
+}
+
 export function useAuth () {
     return {
         login,
         useAuthToken,
         useAuthUser,
-        initAuth
+        initAuth,
+        useLoading
     }
 }
