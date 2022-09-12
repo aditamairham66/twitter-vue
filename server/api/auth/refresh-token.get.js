@@ -4,7 +4,7 @@ import { findById } from '~~/server/db/Users'
 import { decodeToken, generateTokens } from '~~/server/utils/jwt'
 
 export default defineEventHandler(async (event) => {
-    const cookie = useCookie(event)
+    const cookie = useCookies(event)
 
     const token = cookie.refresh_token
     if (!token) {

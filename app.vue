@@ -33,7 +33,10 @@
 <script setup>
   const darkMode = ref(false)
 
-  const { useAuthUser } = useAuth()
+  const { useAuthUser, initAuth } = useAuth()
   const user = useAuthUser()
-  console.log(user)
+
+  onBeforeMount(() => {
+    initAuth()
+  })
 </script>

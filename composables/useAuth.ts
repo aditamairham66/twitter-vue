@@ -63,6 +63,7 @@ export function useAuth () {
     return {
         login,
         useAuthToken,
-        useAuthUser
+        useAuthUser,
+        initAuth
     }
 }
