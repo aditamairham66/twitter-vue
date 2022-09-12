@@ -42,3 +42,12 @@ export const decodeToken = (token) => {
         return null
     }
 }
+
+export const getDataToken = (token) => {
+    
+    // try {
+    //     return jwt.decode(token, { complete : true })
+    // } catch (error) {
+    //     return null
+    // }
+}

@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 interface login {
     username: string, password: string
 }
@@ -22,8 +24,8 @@ const login = ({ username, password }: login) => {
     })
 }
 
-const useAuthToken = () => useState("auth_token")
-const useAuthUser = () => useState("auth_users")
+const useAuthToken = () => useState<string>("auth_token")
+const useAuthUser = () => useState<any>("auth_users")
 
 const setToken = (token: string) => {
     const authToken = useAuthToken()
@@ -41,6 +43,8 @@ const initAuth = () => {
         try {
             await refreshToken()
             await getUsers()
+
+            refreshTokenUpdater()
         } catch (error) {
             reject(error)
         } finally {
@@ -66,7 +70,7 @@ const refreshToken = () => {
 const getUsers = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await useFetch<any>(`api/auth/users`)
+            const data = await useFetchApi<any>(`api/auth/users`)
 
             setUser(data.user)
 
@@ -75,6 +79,20 @@ const getUsers = () => {
             reject(error)
         }
     })
+}
+
+const refreshTokenUpdater = () => {
+    const authToken = useAuthToken()
+    if (!authToken.value) {
+        return
+    }
+    const data = jwt_decode<any>(authToken.value)
+    const refreshTime = data?.exp - 60000
+
+    setTimeout(async () => {
+        await refreshToken()
+        refreshTokenUpdater()
+    }, refreshTime)
 }
 
 const useLoading = () => useState("auth_loading", () => true)
