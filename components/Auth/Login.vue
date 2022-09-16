@@ -8,9 +8,9 @@
 
         <div class="pt-5 space-y-6">
 
-            <FormInput v-model="data.username" label="Username" placeholder="@username" />
+            <AuthFormInput v-model="data.username" label="Username" placeholder="@username" />
 
-            <FormInput label="Password" placeholder="********" type="password" v-model="data.password" />
+            <AuthFormInput label="Password" placeholder="********" type="password" v-model="data.password" />
 
             <button @click="handleLogin">
                 Login

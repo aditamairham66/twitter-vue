@@ -1,7 +1,7 @@
 <template>
     <div>
         <MainPageSection title="Home" :loading="loading">
-            page home
+            <TweetForm/>
         </MainPageSection>
     </div>
 </template>
