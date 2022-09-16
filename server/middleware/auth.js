@@ -5,7 +5,8 @@ import { decodeToken } from "../utils/jwt"
 
 export default defineEventHandler(async (event) => {
     const endpoints = [
-        '/api/auth/users'
+        '/api/auth/users',
+        '/api/users/tweet',
     ]
 
     const isHandledByThisMiddleware = endpoints.some(row => {
