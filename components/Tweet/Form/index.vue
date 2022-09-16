@@ -6,10 +6,15 @@
 
 <script setup>
     const { useAuthUser } = useAuth()
+    const { postTweet } = useTweet()
     const user = useAuthUser()
 
-    const handleTweetSubmit = (data) => {
-        console.log(data)
+    const handleTweetSubmit = async (data) => {
+        try {            
+            await postTweet(data)
+        } catch (error) {
+            console.log('error tweet', error)
+        }
     }
 </script>
 
