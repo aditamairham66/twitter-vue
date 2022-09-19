@@ -6,7 +6,7 @@ interface login {
 const login = ({ username, password }: login) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await fetch(`api/auth/login`, {
+            const data = await $fetch<any>(`/api/auth/login`, {
                 method: 'POST',
                 body: JSON.stringify({
                     username: username,
@@ -56,7 +56,7 @@ const initAuth = () => {
 const refreshToken = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await fetch(`api/auth/refresh-token`).then((res) => res.json())
+            const data = await $fetch<any>(`/api/auth/refresh-token`)
 
             setToken(data.token)
 
@@ -70,7 +70,7 @@ const refreshToken = () => {
 const getUsers = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await useFetchApi<any>(`api/auth/users`)
+            const data = await useFetchApi<any>(`/api/auth/users`, {server: false})
 
             setUser(data.user)
 
@@ -103,6 +103,8 @@ const setLoading = (val: boolean) => {
 }
 
 export function useAuth () {
+    const config = useRuntimeConfig()
+
     return {
         login,
         useAuthToken,

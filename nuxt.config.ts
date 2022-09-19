@@ -12,8 +12,11 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         jwtSecret: process.env.JWT_SECRET,
+        
         cloudinaryName: process.env.CLOUDINARY_NAME,
         cloudinaryKey: process.env.CLOUDINARY_KEY,
         cloudinarySecret: process.env.CLOUDINARY_SECRET,
+
+        baseURL:  process.env.BASE_URL,
     }
 })

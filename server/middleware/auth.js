@@ -13,6 +13,9 @@ export default defineEventHandler(async (event) => {
         
         // get tweet
         '/api/tweet',
+
+        // get tweet status
+        '/api/tweet/:id',
     ]
 
     const isHandledByThisMiddleware = endpoints.some(row => {

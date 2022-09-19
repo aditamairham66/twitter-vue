@@ -5,8 +5,9 @@ const postTweet = (form: any) => {
         formData.append(`file_${i}`, row)
     })
 
-    return useFetchApi(`api/users/tweet`, {
+    return useFetchApi(`/api/users/tweet`, {
         method: 'POST',
+        server: false,
         body: formData
     })
 }
@@ -14,8 +15,24 @@ const postTweet = (form: any) => {
 const getAllTweet = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await useFetchApi<any>(`api/tweet`, {
-                method: 'GET'
+            const data = await useFetchApi<any>(`/api/tweet`, {
+                method: 'GET',
+                server: false
+            })
+            
+            resolve(data)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+const getTweetById = (tweetId : any) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const data = await useFetchApi<any>(`/api/tweet/${tweetId}`, {
+                method: 'GET',
+                server: false
             })
             
             resolve(data)
@@ -28,6 +45,7 @@ const getAllTweet = () => {
 export function useTweet() {
     return {
         postTweet,
-        getAllTweet
+        getAllTweet,
+        getTweetById
     }
 }
