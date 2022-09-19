@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="flex items-center flex-shrink-0 p-4 pb-0">
             <div class="flex w-12 items-top">
                 <img :src="props.user?.profileImage" alt="" class="inline-block w-10 h-10 rounded-full">
@@ -8,6 +9,7 @@
             <div class="w-full p-2">
                 <textarea 
                     v-model="text" 
+                    placeholder="Type your tweet?"
                     class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:tex.white focus:ring-0"></textarea>
             </div>
         </div>
@@ -92,11 +94,16 @@
                     </svg>
                 </div>
             </div>
+
+            <div class="ml-auto">
+                <TweetFormButtonTweet size="sm" :disabled="isDisabled" @onClick="handleSubmitTweet">
+                    <span class="font-bold">
+                        Tweet
+                    </span>
+                </TweetFormButtonTweet>
+            </div>
         </div>
 
-        <div>
-            <button @click="handleSubmitTweet">Tweet</button>
-        </div>
     </div>
 </template>
 
@@ -107,6 +114,8 @@
     const imageUploadInput = ref()
     const imageUploadSelected = ref(null)
     const imageUploadShow = ref(null)
+
+    const isDisabled = computed(() => text.value === '')
 
     const props = defineProps({
         user: {

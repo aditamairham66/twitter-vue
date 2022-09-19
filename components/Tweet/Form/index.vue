@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div v-if="loading" class="flex items-center justify-center py-6">
+        <LoadingSpinner/>
+    </div>
+    <div v-else>
         <TweetFormInput :user="user" @onSubmit="handleTweetSubmit"/>
     </div>
 </template>
@@ -9,7 +12,10 @@
     const { postTweet } = useTweet()
     const user = useAuthUser()
 
+    const loading = ref(false)
+
     const handleTweetSubmit = async (data) => {
+        loading.value = true
         try {            
             await postTweet({
                 text: data.text,
@@ -17,7 +23,10 @@
             })
         } catch (error) {
             console.log('error tweet', error)
+        } finally {
+            loading.value = false
         }
+
     }
 </script>
 
