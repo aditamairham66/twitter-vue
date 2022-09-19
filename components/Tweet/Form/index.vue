@@ -11,7 +11,10 @@
 
     const handleTweetSubmit = async (data) => {
         try {            
-            await postTweet(data)
+            await postTweet({
+                text: data.text,
+                mediaFiles: data.mediaFiles
+            })
         } catch (error) {
             console.log('error tweet', error)
         }

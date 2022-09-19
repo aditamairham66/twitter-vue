@@ -13,7 +13,9 @@
         </div>
 
         <div class="p-4 pl-16">
-            <img class="border rounded-2xl">
+            <img 
+                :src="imageUploadShow" v-if="imageUploadShow"
+                class="border rounded-2xl" :class="twitterBorderColor">
 
             <input type="file" hidden accept="image/png, image/gif, image/jpeg" 
                 ref="imageUploadInput" 
@@ -99,9 +101,12 @@
 </template>
 
 <script setup>
+    const {twitterBorderColor} = useTailwindConfig()
+
     const text = ref('')
     const imageUploadInput = ref()
     const imageUploadSelected = ref(null)
+    const imageUploadShow = ref(null)
 
     const props = defineProps({
         user: {
@@ -125,8 +130,13 @@
 
     const changeImageUpload = (e) => {
         const file = e.target.files[0]
-        console.log(file)
         imageUploadSelected.value = file
+
+        const readFile  = new FileReader()
+        readFile.onload = (e) => {
+            imageUploadShow.value = e.target.result
+        }
+        readFile.readAsDataURL(file)
     }
 </script>
 
