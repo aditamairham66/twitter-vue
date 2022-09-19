@@ -25,6 +25,12 @@ export default defineEventHandler(async (event) => {
         authorId: usersId
     }
 
+    const replyTo = fields.replyTo
+
+    if (replyTo && replyTo !== 'null' && replyTo !== 'undefined') {
+        formData.replyToId = replyTo
+    }
+
     const save = await saveTweet(formData);
 
     const fileRes = Object.keys(files).map(async i => {

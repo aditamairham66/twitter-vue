@@ -5,3 +5,9 @@ export const saveTweet = (form) => {
         data: form
     })
 }
+
+export const getAllTweet = (params = {}) => {
+    return prisma.tweet.findMany({
+        ...params
+    })
+}

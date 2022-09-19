@@ -1,5 +1,9 @@
 <template>
     <div>
+        <Head>
+            <Title>Home</Title>
+        </Head>
+
         <MainPageSection title="Home" :loading="loading">
             <TweetForm/>
         </MainPageSection>

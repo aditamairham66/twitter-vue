@@ -5,8 +5,14 @@ import { decodeToken } from "../utils/jwt"
 
 export default defineEventHandler(async (event) => {
     const endpoints = [
+        // get users
         '/api/auth/users',
+
+        // send tweet url
         '/api/users/tweet',
+        
+        // get tweet
+        '/api/tweet',
     ]
 
     const isHandledByThisMiddleware = endpoints.some(row => {
