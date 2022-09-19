@@ -5,11 +5,11 @@
                     group-hover:text-${props.color}-400 dark:group-hover:bg-opacity-20 
                     ${defaultTransition}`">
             <slot name="icon" :classes="`w-${props.size} h-${props.size}`"></slot>
-
-            <span :class="`ml-1 group-hover:text-${props.color}-400`">
-                <slot></slot>
-            </span>
         </div>
+        
+        <span :class="`ml-1 group-hover:text-${props.color}-400`">
+            <slot></slot>
+        </span>
     </div>
 </template>
 
