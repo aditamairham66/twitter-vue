@@ -12,9 +12,19 @@
             </div>
         </div>
 
+        <div class="p-4 pl-16">
+            <img class="border rounded-2xl">
+
+            <input type="file" hidden accept="image/png, image/gif, image/jpeg" 
+                ref="imageUploadInput" 
+                @change="changeImageUpload">
+        </div>
+
         <div class="flex p-2 pl-14">
             <div class="flex w-full text-white">
-                <div class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
+                <div 
+                    @click="clickIcImageUpload" 
+                    class="p-2 text-blue-400 rounded-full cursor-pointer hover:bg-blue-50 dark:hover:bg-dim-800">
                     <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
                         <g>
                             <path
@@ -90,6 +100,8 @@
 
 <script setup>
     const text = ref('')
+    const imageUploadInput = ref()
+    const imageUploadSelected = ref(null)
 
     const props = defineProps({
         user: {
@@ -102,8 +114,19 @@
 
     const handleSubmitTweet = () => {
         emits('onSubmit', {
-            text: text.value
+            text: text.value,
+            mediaFiles: [imageUploadSelected.value]
         })
+    }
+
+    const clickIcImageUpload = () => {
+        imageUploadInput.value.click()
+    }
+
+    const changeImageUpload = (e) => {
+        const file = e.target.files[0]
+        console.log(file)
+        imageUploadSelected.value = file
     }
 </script>
 
