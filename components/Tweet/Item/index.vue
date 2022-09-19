@@ -4,6 +4,7 @@
         <TweetItemHeader :tweet="props.tweet"/>
 
         <div :class="tweetBodyWrapper">
+
             <p class="flex-shrink w-auto font-medium text-gray-800 dark:text-white" :class="textSize">
                 {{ props.tweet.text }}
             </p>
@@ -13,12 +14,17 @@
                 <img :src="image.url" class="w-full rounded-2xl" />
             </div>
 
+            <div class="mt-2">
+                <TweetItemAction :tweet="props.tweet" compact></TweetItemAction>
+            </div>
+
         </div>
 
     </div>
 </template>
 
 <script setup>
+    const { twitterBorderColor } = useTailwindConfig()
     const props = defineProps({
         tweet: {
             type: Object,
