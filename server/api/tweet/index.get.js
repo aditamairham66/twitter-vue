@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
             {
                 createdAt: 'desc'
             }
-        ],
+        ]
     }
 
     const all = await getAllTweet(q)
