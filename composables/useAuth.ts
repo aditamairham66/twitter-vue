@@ -6,13 +6,13 @@ interface login {
 const login = ({ username, password }: login) => {
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await $fetch<any>(`/api/auth/login`, {
+            const data = await $fetch(`/api/auth/login`, {
                 method: 'POST',
                 body: JSON.stringify({
                     username: username,
                     password: password,
                 }),
-            }).then((res) => res.json())
+            })
 
             setToken(data.token)
             setUser(data.user)
@@ -56,7 +56,7 @@ const initAuth = () => {
 const refreshToken = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            const data = await $fetch<any>(`/api/auth/refresh-token`)
+            const data = await $fetch(`/api/auth/refresh-token`)
 
             setToken(data.token)
 
@@ -103,8 +103,6 @@ const setLoading = (val: boolean) => {
 }
 
 export function useAuth () {
-    const config = useRuntimeConfig()
-
     return {
         login,
         useAuthToken,

@@ -1,6 +1,6 @@
 export default async <TResponse>(
     url: string, 
-    config: FetchOptions = {}
+    config: any = {}
   ): Promise<TResponse> => {
     const { useAuthToken } = useAuth()
     

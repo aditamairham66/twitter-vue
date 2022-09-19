@@ -16,12 +16,15 @@
 
     const loading = ref(false)
 
+    // console.log(useRouter().query)
+
     const getIdFromRoute = () => {
         const route = useRoute()
         return route.params.id
     }
 
     onMounted(async () => {
+        getIdFromRoute()
         loading.value = true
 
         try {

@@ -7,7 +7,6 @@ const postTweet = (form: any) => {
 
     return useFetchApi(`/api/users/tweet`, {
         method: 'POST',
-        server: false,
         body: formData
     })
 }
@@ -16,8 +15,7 @@ const getAllTweet = () => {
     return new Promise(async (resolve, reject) => {
         try {
             const data = await useFetchApi<any>(`/api/tweet`, {
-                method: 'GET',
-                server: false
+                method: 'GET'
             })
             
             resolve(data)
@@ -31,8 +29,7 @@ const getTweetById = (tweetId : any) => {
     return new Promise(async (resolve, reject) => {
         try {
             const data = await useFetchApi<any>(`/api/tweet/${tweetId}`, {
-                method: 'GET',
-                server: false
+                method: 'GET'
             })
             
             resolve(data)
