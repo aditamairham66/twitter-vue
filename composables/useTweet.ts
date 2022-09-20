@@ -1,6 +1,8 @@
 const postTweet = (form: any) => {
     const formData =  new FormData();
     formData.append('text', form.text)
+    formData.append('replyTo', form.replyTo)
+
     form.mediaFiles.forEach((row, i) => {
         formData.append(`file_${i}`, row)
     })

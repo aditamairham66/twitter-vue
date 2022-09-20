@@ -3,7 +3,9 @@
 
         <div class="flex items-center flex-shrink-0 p-4 pb-0">
             <div class="flex w-12 items-top">
-                <img :src="props.user?.profileImage" alt="" class="inline-block w-10 h-10 rounded-full">
+                <img 
+                    :src="props.user?.profileImage" 
+                    class="inline-block w-10 h-10 rounded-full">
             </div>
 
             <div class="w-full p-2">
@@ -16,8 +18,10 @@
 
         <div class="p-4 pl-16">
             <img 
-                :src="imageUploadShow" v-if="imageUploadShow"
-                class="border rounded-2xl" :class="twitterBorderColor">
+                :src="imageUploadShow" 
+                v-if="imageUploadShow"
+                class="border rounded-2xl" 
+                :class="twitterBorderColor">
 
             <input type="file" hidden accept="image/png, image/gif, image/jpeg" 
                 ref="imageUploadInput" 
@@ -96,7 +100,9 @@
             </div>
 
             <div class="ml-auto">
-                <TweetFormButtonTweet size="sm" :disabled="isDisabled" @onClick="handleSubmitTweet">
+                <TweetFormButtonTweet size="sm" 
+                    :disabled="isDisabled" 
+                    @onClick="handleSubmitTweet">
                     <span class="font-bold">
                         Tweet
                     </span>

@@ -3,7 +3,10 @@
         <LoadingSpinner/>
     </div>
     <div v-else>
-        <TweetFormInput :placeholder="props.placeholder" :user="user" @onSubmit="handleTweetSubmit"/>
+        <TweetFormInput 
+            :placeholder="props.placeholder" 
+            :user="user" 
+            @onSubmit="handleTweetSubmit"/>
     </div>
 </template>
 
@@ -14,20 +17,29 @@
     const user = useAuthUser()
     const loading = ref(false)
 
+    const emits = defineEmits(['onSuccessSubmit'])
+
     const props = defineProps({
         placeholder: {
             type: String,
             default: 'Type your tweet?'
-        }
+        },
+        replyTo: {
+            type: Object,
+            default: null
+        },
     })
 
-    const handleTweetSubmit = async (data) => {
+    const handleTweetSubmit = async (formData) => {
         loading.value = true
         try {            
-            await postTweet({
-                text: data.text,
-                mediaFiles: data.mediaFiles
+            const {data} = await postTweet({
+                text: formData.text,
+                mediaFiles: formData.mediaFiles,
+                replyTo: props.replyTo?.id
             })
+
+            emits('onSuccessSubmit', data)
         } catch (error) {
             console.log('error tweet', error)
         } finally {
