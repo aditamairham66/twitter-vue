@@ -19,9 +19,9 @@
                     Replying to
                 </span>
 
-                <NuxtLink :to="`status/${props.tweet?.replyTo?.id}`" rel="noopener" class="text-blue-400">
+                <a :href="`status/${props.tweet?.replyTo?.id}`" class="text-blue-400">
                     {{ props.tweet.replyTo.author.handle }}
-                </NuxtLink>
+                </a>
             </p>
 
         </div>

@@ -18,23 +18,26 @@
 
     // console.log(useRouter().query)
 
-    const getIdFromRoute = () => {
-        const route = useRoute()
-        return route.params.id
+    watch(() => useRoute().fullPath, () => getTweet())
+    
+    function getTweetIdFromRoute() {
+        return useRoute().params.id
     }
 
-    onMounted(async () => {
-        getIdFromRoute()
+    async function getTweet() {
         loading.value = true
-
         try {
-            const {data} = await getTweetById(getIdFromRoute())
+            const {data} = await getTweetById(getTweetIdFromRoute())
             console.log(data)
         } catch (error) {
-            console.log(error)
+            console.log(error);
         } finally {
             loading.value = false
         }
+    }
+
+    onBeforeMount(() => {
+        getTweet()
     })
 </script>
 
