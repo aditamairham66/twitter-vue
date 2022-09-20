@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
             replies: {
                 include: {
                     user: true,
+                    mediaTweet: true,
                     replyTo: {
                         include: {
                             user: true
