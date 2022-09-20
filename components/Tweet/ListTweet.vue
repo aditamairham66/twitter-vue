@@ -12,7 +12,7 @@
             :class="[twitterBorderColor, defaultTransition]"
             v-for="(row, i) in props.listTweet" 
             :key="i">
-            <TweetItem :tweet="row"/>
+            <TweetItem :tweet="row" compact/>
         </div>
 
     </div>

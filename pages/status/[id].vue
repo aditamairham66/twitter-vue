@@ -5,21 +5,23 @@
         </Head>
 
         <MainPageSection title="Tweet" :loading="loading">
-            
-
+        
+            <TweetDetail :user="user" :tweet="tweet"/>
+        
         </MainPageSection>
     </div>
 </template>
 
 <script setup>
     const { getTweetById } = useTweet()
+    const { useAuthUser } = useAuth()
 
+    const user = useAuthUser()
     const loading = ref(false)
-
-    // console.log(useRouter().query)
+    const tweet = ref(null)
 
     watch(() => useRoute().fullPath, () => getTweet())
-    
+
     function getTweetIdFromRoute() {
         return useRoute().params.id
     }
@@ -28,7 +30,7 @@
         loading.value = true
         try {
             const {data} = await getTweetById(getTweetIdFromRoute())
-            console.log(data)
+            tweet.value = data
         } catch (error) {
             console.log(error);
         } finally {

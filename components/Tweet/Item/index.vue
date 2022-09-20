@@ -15,7 +15,7 @@
             </div>
 
             <div class="mt-2">
-                <TweetItemAction :tweet="props.tweet" compact></TweetItemAction>
+                <TweetItemAction :tweet="props.tweet" :compact="props.compact"></TweetItemAction>
             </div>
 
         </div>
@@ -25,6 +25,7 @@
 
 <script setup>
     const { twitterBorderColor } = useTailwindConfig()
+
     const props = defineProps({
         tweet: {
             type: Object,

@@ -3,16 +3,23 @@
         <LoadingSpinner/>
     </div>
     <div v-else>
-        <TweetFormInput :user="user" @onSubmit="handleTweetSubmit"/>
+        <TweetFormInput :placeholder="props.placeholder" :user="user" @onSubmit="handleTweetSubmit"/>
     </div>
 </template>
 
 <script setup>
     const { useAuthUser } = useAuth()
     const { postTweet } = useTweet()
-    const user = useAuthUser()
 
+    const user = useAuthUser()
     const loading = ref(false)
+
+    const props = defineProps({
+        placeholder: {
+            type: String,
+            default: 'Type your tweet?'
+        }
+    })
 
     const handleTweetSubmit = async (data) => {
         loading.value = true
