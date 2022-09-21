@@ -11,7 +11,10 @@
 
           <div class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarLeft @on-tweet="openTweetModal"/>
+              <SidebarLeft 
+                @on-tweet="openTweetModal" 
+                @on-logout="clickLogout"
+                :user="user"/>
             </div>
           </div>
 
@@ -43,7 +46,7 @@
 </template>
 
 <script setup>
-  const { useAuthUser, initAuth, useLoading } = useAuth()
+  const { useAuthUser, initAuth, useLoading, signOut } = useAuth()
   const { useTweetToggleModal, setTweetToggleModal } = useTweet()
 
   const loading = useLoading()
@@ -63,6 +66,10 @@
     closeTweetModal()
 
     window.location.href = `/status/${tweet.id}`
+  }
+
+  const clickLogout = () => {
+    signOut()
   }
 
   onBeforeMount(() => {

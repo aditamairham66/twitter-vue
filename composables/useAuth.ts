@@ -102,12 +102,30 @@ const setLoading = (val: boolean) => {
     authLoading.value = val
 }
 
+const signOut = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await useFetchApi<any>(`/api/auth/sign-out`, {
+                method: "POST"
+            })
+
+            setToken(null)
+            setUser(null)
+
+            resolve(true)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 export function useAuth () {
     return {
         login,
         useAuthToken,
         useAuthUser,
         initAuth,
-        useLoading
+        useLoading,
+        signOut
     }
 }

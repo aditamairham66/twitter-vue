@@ -12,37 +12,45 @@
 
             <AuthFormInput label="Password" placeholder="********" type="password" v-model="data.password" />
 
-            <button @click="handleLogin">
+            <ButtonBasic 
+                liquid 
+                :disabled="disabledLogin" 
+                @click="handleLogin">
                 Login
-            </button>
+            </ButtonBasic>
 
         </div>
     </div>
 </template>
 
 <script setup>
-const { login } = useAuth()
+    const { login } = useAuth()
 
-const data = reactive({
-    username: '',
-    password: '',
-    loading: false
-})
+    const data = reactive({
+        username: '',
+        password: '',
+        loading: false
+    })
 
-const handleLogin = () => {
-    data.loading = true
-    
-    try {
-        login({
-            username: data.username,
-            password: data.password,
-        })
-    } catch (error) {
-        console.log(error)
-    } finally {
-        data.loading = false
+    const handleLogin = () => {
+        data.loading = true
+        
+        try {
+            login({
+                username: data.username,
+                password: data.password,
+            })
+        } catch (error) {
+            console.log(error)
+        } finally {
+            data.loading = false
+        }
     }
-}
+
+    const disabledLogin = computed(() => {
+        return (!data.username || !data.password) || data.loading
+    })
+
 </script>
 
 <style lang="scss" scoped>
