@@ -1,6 +1,19 @@
 <template>
     <div class="flex flex-col">
 
+        <div class="relative m-2">
+            <div class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer">
+                <div class="w-6 h-6">
+                    <MagnifyingGlassIcon @click="searchTweet" />
+                </div>
+            </div>
+            <input 
+                class="flex items-center w-full pl-12 text-sm font-normal text-black bg-gray-200 border border-gray-200 rounded-full shadow dark:text-gray-100 dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-blue-200 h-9"
+                placeholder="Search tweet" 
+                type="text" 
+                v-model="search">
+        </div>
+
         <SidebarRightPreviewCard title="What's happening">
             <SidebarRightPreviewCardItem v-for="(row, i) in listWhatHappen" :key="i">
                 <div>
@@ -36,6 +49,8 @@
 </template>
 
 <script setup>
+    import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline';
+
     const listWhatHappen = ref([
         {
             title: 'SpaceX',
@@ -68,6 +83,19 @@
             image: 'https://picsum.photos/200/200'
         }
     ])
+
+    const search = ref('')
+
+    const searchTweet = () => {
+        // useRouter().push({
+        //     path: '/search',
+        //     query: {
+        //         q: search.value
+        //     }
+        // })
+
+        location.href = `/search?q=${search.value}`
+    }
 </script>
 
 <style lang="scss" scoped>
