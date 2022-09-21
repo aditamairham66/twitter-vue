@@ -2,7 +2,7 @@ import { getAllTweet } from "~~/server/db/Tweet"
 import { tweetTransformer } from "~~/server/transformers/Tweet"
 
 export default defineEventHandler(async (event) => {
-    const { query } = useQuery(event)
+    const {query} = useQuery(event)
 
     let q = {
         include: {

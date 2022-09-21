@@ -13,11 +13,12 @@ const postTweet = (form: any) => {
     })
 }
 
-const getAllTweet = () => {
+const getAllTweet = (params = {}) => {
     return new Promise(async (resolve, reject) => {
         try {
             const data = await useFetchApi<any>(`/api/tweet`, {
-                method: 'GET'
+                method: 'GET',
+                params
             })
             
             resolve(data)

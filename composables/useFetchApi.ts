@@ -1,14 +1,14 @@
 export default async <TResponse>(
     url: string, 
-    config: any = {}
+    config?
   ): Promise<TResponse> => {
     const { useAuthToken } = useAuth()
     
-    const response = await fetch(url, {
+    return await $fetch(url, {
         ...config,
         headers: {
             Authorization: `Bearer ${useAuthToken().value}`
         }
     });
-    return await response.json();
+    // return await response;
 }
