@@ -1,7 +1,8 @@
 <template>
     <div class="flex items-center justify-around w-full">
 
-        <TweetItemActionIC color="blue" :size="size">
+        <TweetItemActionIC color="blue" :size="size" 
+            @on-click="emit('onClickComment')">
             <template v-slot:icon="{ classes }">
                 <ChatBubbleOvalLeftEllipsisIcon :class="classes" />
             </template>
@@ -58,6 +59,8 @@
             default: false
         }
     })
+
+    const emit = defineEmits(['onClickComment'])
 
     const showStats = computed(() => props.compact)
     const size = computed(() => props.compact ? 5 : 8)

@@ -15,7 +15,10 @@
             </div>
 
             <div class="mt-2">
-                <TweetItemAction :tweet="props.tweet" :compact="props.compact"></TweetItemAction>
+                <TweetItemAction 
+                    :tweet="props.tweet" 
+                    :compact="props.compact" 
+                    @on-click-comment="onClickComment"></TweetItemAction>
             </div>
 
         </div>
@@ -41,8 +44,11 @@
         }
     })
 
-    const tweetBodyWrapper = computed(() => props.compact ? 'ml-16' : 'ml-2 mt-4')
+    const onClickComment = () => {
+        alert()
+    }
 
+    const tweetBodyWrapper = computed(() => props.compact ? 'ml-16' : 'ml-2 mt-4')
     const textSize = computed(() => props.compact ? 'text-base' : 'text-2xl')
 </script>
 
