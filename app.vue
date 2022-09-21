@@ -11,7 +11,7 @@
 
           <div class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarLeft/>
+              <SidebarLeft @on-tweet="openTweetModal"/>
             </div>
           </div>
 
@@ -31,7 +31,11 @@
 
       <MainAuthPageSection v-else/>
 
-      <ModalBasic/>
+      <ModalBasic 
+        :open="tweetToggleModal" 
+        @on-close="closeTweetModal">
+        <TweetForm :user="user" @onSuccessSubmit="handleFormSuccess"/>
+      </ModalBasic>
 
     </div>
 
@@ -39,11 +43,27 @@
 </template>
 
 <script setup>
-  const darkMode = ref(false)
-
   const { useAuthUser, initAuth, useLoading } = useAuth()
+  const { useTweetToggleModal, setTweetToggleModal } = useTweet()
+
   const loading = useLoading()
   const user = useAuthUser()
+  const darkMode = ref(false)
+  const tweetToggleModal = useTweetToggleModal()
+
+  const closeTweetModal = () => {
+    setTweetToggleModal(false)
+  }
+
+  const openTweetModal = () => {
+    setTweetToggleModal(true)
+  }
+
+  const handleFormSuccess = (tweet) => {
+    closeTweetModal()
+
+    window.location.href = `/status/${tweet.id}`
+  }
 
   onBeforeMount(() => {
     initAuth()

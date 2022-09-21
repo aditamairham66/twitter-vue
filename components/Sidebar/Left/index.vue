@@ -85,14 +85,36 @@
                 </template>
             </SidebarLeftTab>
 
+            <div class="hidden xl:block">
+                <ButtonBasic 
+                    liquid 
+                    size="lg" 
+                    @on-click="emits('onTweet')">
+                    <span class="font-bold">
+                        Tweet
+                    </span>
+                </ButtonBasic>
+            </div>
+
+            <div class="block xl:hidden">
+                <ButtonBasic  
+                    @on-click="emits('onTweet')">
+                    <div class="w-6 h-6 font-bold">
+                        <PencilIcon />
+                    </div>
+                </ButtonBasic>
+            </div>
+
         </div>
 
     </div>
 </template>
 
 <script setup>
-import { HomeIcon } from "@heroicons/vue/24/solid"
-import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon } from "@heroicons/vue/24/outline"
+    import { HomeIcon } from "@heroicons/vue/24/solid"
+    import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon, PencilIcon } from "@heroicons/vue/24/outline"
 
-const {defaultTransition} = useTailwindConfig()
+    const {defaultTransition} = useTailwindConfig()
+
+    const emits = defineEmits(['onTweet'])
 </script>
