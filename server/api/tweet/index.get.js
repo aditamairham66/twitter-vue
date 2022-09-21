@@ -4,7 +4,7 @@ import { tweetTransformer } from "~~/server/transformers/Tweet"
 export default defineEventHandler(async (event) => {
     const { query } = useQuery(event)
 
-    const q = {
+    let q = {
         include: {
             user: true,
             mediaTweet: true,
@@ -24,6 +24,17 @@ export default defineEventHandler(async (event) => {
                 createdAt: 'desc'
             }
         ]
+    }
+
+    if (!!query) {
+        q = {
+            ...q,
+            where: {
+                text: {
+                    contains: query
+                }
+            }
+        }
     }
 
     const all = await getAllTweet(q)
