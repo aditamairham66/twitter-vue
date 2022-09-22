@@ -1,8 +1,6 @@
 <template>
     <div>
-        <Head>
-            <Title>Home</Title>
-        </Head>
+        <MetaBasic title="Home" />
 
         <MainPageSection title="Home" :loading="loading">
             

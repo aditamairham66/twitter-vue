@@ -1,8 +1,6 @@
 <template>
 
-    <Head>
-        <Title>Login</Title>
-    </Head>
+    <MetaBasic title="Login" />
 
     <div class="flex h-screen">
 

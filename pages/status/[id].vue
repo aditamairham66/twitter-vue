@@ -1,8 +1,6 @@
 <template>
     <div>
-        <Head>
-            <Title>Tweet</Title>
-        </Head>
+        <MetaBasic title="Tweet" />
 
         <MainPageSection title="Tweet" :loading="loading">
         

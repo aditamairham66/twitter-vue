@@ -1,8 +1,6 @@
 <template>
     <div>
-        <Head>
-            <Title>Search</Title>
-        </Head>
+        <MetaBasic title="Search" />
 
         <MainPageSection title="Search" :loading="loading">
         
