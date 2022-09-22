@@ -2,7 +2,7 @@ import UrlPattern from "url-pattern"
 import { sendError } from 'h3'
 import { decodeToken } from "../utils/jwt.js"
 import { findById } from "../db/Users"
-
+//
 export default defineEventHandler(async (event) => {
     const endpoints = [
         // get users
