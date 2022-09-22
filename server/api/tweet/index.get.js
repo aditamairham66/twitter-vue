@@ -1,5 +1,5 @@
-import { getAllTweet } from "~~/server/db/Tweet.js"
-import { tweetTransformer } from "~~/server/transformers/Tweet.js"
+import { getAllTweet } from "../../server/db/Tweet.js"
+import { tweetTransformer } from "../../server/transformers/Tweet.js"
 
 export default defineEventHandler(async (event) => {
     const {query} = useQuery(event)

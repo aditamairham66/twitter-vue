@@ -1,7 +1,7 @@
 import { sendError } from 'h3'
-import { findByToken } from '~~/server/db/RefreshToken.js'
-import { findById } from '~~/server/db/Users.js'
-import { decodeToken, generateTokens } from '~~/server/utils/jwt.js'
+import { findByToken } from '../../server/db/RefreshToken.js'
+import { findById } from '../../server/db/Users.js'
+import { decodeToken, generateTokens } from '../../server/utils/jwt.js'
 
 export default defineEventHandler(async (event) => {
     const cookie = useCookies(event)
