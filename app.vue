@@ -13,7 +13,7 @@
             <div class="sticky top-0">
               <SidebarLeft 
                 @on-tweet="openTweetModal" 
-                @on-logout="clickLogout"
+                @on-logout="openLogoutModal"
                 :user="user"/>
             </div>
           </div>
@@ -44,13 +44,15 @@
           @onSuccessSubmit="handleFormSuccess"/>
       </ModalBasic>
 
+      <ModalLogout :open="toggleSignout" @on-confirm="clickLogout" @on-close="closeLogout"/>
+
     </div>
 
   </div>
 </template>
 
 <script setup>
-  const { useAuthUser, initAuth, useLoading, signOut } = useAuth()
+  const { useAuthUser, initAuth, useLoading, signOut, useToggleSignoutModal, setToggleSignoutModal } = useAuth()
   const { useTweetToggleModal, setTweetToggleModal, useTweetDataModal, setTweetDataModal } = useTweet()
   const emitt = useEmit()
 
@@ -59,6 +61,7 @@
   const darkMode = ref(false)
   const tweetToggleModal = useTweetToggleModal()
   const tweetDataToggle = useTweetDataModal()
+  const toggleSignout = useToggleSignoutModal()
 
   emitt.$on('replyTweet', (tweet) => {
     setTweetDataModal(tweet)
@@ -81,8 +84,17 @@
     window.location.href = `/status/${tweet.id}`
   }
 
+  const openLogoutModal = () => {
+    setToggleSignoutModal(true)
+  }
+
   const clickLogout = () => {
+    setToggleSignoutModal(false)
     signOut()
+  }
+
+  const closeLogout = () => {
+    setToggleSignoutModal(false)
   }
 
   onBeforeMount(() => {

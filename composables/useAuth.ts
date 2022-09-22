@@ -119,6 +119,13 @@ const signOut = () => {
     })
 }
 
+const useToggleSignoutModal = () => useState("toggle_signout_modal", () => false)
+
+const setToggleSignoutModal = (val: boolean) => {
+    const toggleSignout = useToggleSignoutModal()
+    toggleSignout.value = val
+}
+
 export function useAuth () {
     return {
         login,
@@ -126,6 +133,8 @@ export function useAuth () {
         useAuthUser,
         initAuth,
         useLoading,
-        signOut
+        signOut,
+        useToggleSignoutModal,
+        setToggleSignoutModal
     }
 }
