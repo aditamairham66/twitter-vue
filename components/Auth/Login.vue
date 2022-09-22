@@ -33,11 +33,12 @@
     const data = reactive({
         username: '',
         password: '',
-        loading: false
     })
 
+    const loading = ref(false)
+
     const handleLogin = () => {
-        data.loading = true
+        loading.value = true
         
         try {
             login({
@@ -47,12 +48,14 @@
         } catch (error) {
             console.log(error)
         } finally {
-            data.loading = false
+            loading.value = false
         }
     }
 
+    console.log(loading)
+
     const disabledLogin = computed(() => {
-        return (!data.username || !data.password) || data.loading
+        return (!data.username || !data.password)
     })
 
 </script>
