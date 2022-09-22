@@ -1,4 +1,9 @@
 <template>
+
+    <Head>
+        <Title>Login</Title>
+    </Head>
+
     <div class="flex h-screen">
 
         <div class="relative flex-1 hidden w-0 lg:block">

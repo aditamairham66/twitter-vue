@@ -15,18 +15,18 @@
 </template>
 
 <script setup>
-const { twitterBorderColor } = useTailwindConfig()
+    const { twitterBorderColor } = useTailwindConfig()
 
-const props = defineProps({
-    title: {
-        type: String,
-        required: true
-    },
-    loading: {
-        type: Boolean,
-        required: true
-    }
-})
+    const props = defineProps({
+        title: {
+            type: String,
+            required: true
+        },
+        loading: {
+            type: Boolean,
+            required: true
+        }
+    })
 </script>
 
 <style lang="scss" scoped>
