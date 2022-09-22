@@ -12,7 +12,11 @@
 
             <AuthFormInput label="Password" placeholder="********" type="password" v-model="data.password" />
 
-            <ButtonBasic 
+            <div class="flex flex-row justify-center" v-if="loading">
+                <LoadingSpinner/>
+            </div>
+
+            <ButtonBasic v-else
                 liquid 
                 :disabled="disabledLogin" 
                 @click="handleLogin">
