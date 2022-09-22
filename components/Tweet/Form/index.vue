@@ -3,10 +3,17 @@
         <LoadingSpinner/>
     </div>
     <div v-else>
+
+        <TweetItem 
+            :tweet="props.replyTo" 
+            v-if="props.replyTo && props.replyShow" 
+            hide-actions/>
+
         <TweetFormInput 
             :placeholder="props.placeholder" 
             :user="user" 
             @onSubmit="handleTweetSubmit"/>
+
     </div>
 </template>
 
@@ -28,6 +35,10 @@
             type: Object,
             default: null
         },
+        replyShow: {
+            type: Boolean,
+            default: false
+        }
     })
 
     const handleTweetSubmit = async (formData) => {

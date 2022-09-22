@@ -37,7 +37,11 @@
       <ModalBasic 
         :open="tweetToggleModal" 
         @on-close="closeTweetModal">
-        <TweetForm :user="user" @onSuccessSubmit="handleFormSuccess"/>
+        <TweetForm 
+          :user="user" 
+          :reply-to="tweetDataToggle" 
+          reply-show
+          @onSuccessSubmit="handleFormSuccess"/>
       </ModalBasic>
 
     </div>
@@ -47,18 +51,27 @@
 
 <script setup>
   const { useAuthUser, initAuth, useLoading, signOut } = useAuth()
-  const { useTweetToggleModal, setTweetToggleModal } = useTweet()
+  const { useTweetToggleModal, setTweetToggleModal, useTweetDataModal, setTweetDataModal } = useTweet()
+  const emitt = useEmit()
 
   const loading = useLoading()
   const user = useAuthUser()
   const darkMode = ref(false)
   const tweetToggleModal = useTweetToggleModal()
+  const tweetDataToggle = useTweetDataModal()
+
+  emitt.$on('replyTweet', (tweet) => {
+    setTweetDataModal(tweet)
+    setTweetToggleModal(true)
+  })
 
   const closeTweetModal = () => {
+    setTweetDataModal(null)
     setTweetToggleModal(false)
   }
 
   const openTweetModal = () => {
+    setTweetDataModal(null)
     setTweetToggleModal(true)
   }
 

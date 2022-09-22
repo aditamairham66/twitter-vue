@@ -49,12 +49,21 @@ const setTweetToggleModal = (value: boolean) => {
     tweetModalToggle.value = value
 }
 
+const useTweetDataModal = () => useState<any>("tweet_data_toggle", () => null)
+
+const setTweetDataModal = (value: any) => {
+    const tweetDataToggle = useTweetDataModal()
+    tweetDataToggle.value = value
+}
+
 export function useTweet() {
     return {
         postTweet,
         getAllTweet,
         getTweetById,
         useTweetToggleModal,
-        setTweetToggleModal
+        setTweetToggleModal,
+        useTweetDataModal,
+        setTweetDataModal
     }
 }

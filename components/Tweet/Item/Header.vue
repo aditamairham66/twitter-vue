@@ -19,7 +19,7 @@
                     Replying to
                 </span>
 
-                <a :href="`status/${props.tweet?.replyTo?.id}`" class="text-blue-400">
+                <a href="javascript:void(0)" @click="redirectUsers" class="text-blue-400">
                     {{ props.tweet.replyTo.author.handle }}
                 </a>
             </p>
@@ -39,6 +39,10 @@
     const author = props.tweet.author
 
     const replyToTweetUrl = computed(() => `/status/${props.tweet?.replyTo?.id}`)
+
+    const redirectUsers = () => {
+        window.location.href = `/status/${props.tweet?.replyTo?.id}`
+    }
 </script>
 
 <style scoped>

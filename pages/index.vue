@@ -7,7 +7,7 @@
         <MainPageSection title="Home" :loading="loading">
             
             <div class="border-b">
-                <TweetForm/>
+                <TweetForm @on-success-submit="handleFormSuccess"/>
             </div>
 
             <TweetListTweet :listTweet="listTweet"/>
@@ -22,7 +22,11 @@
     const loading = ref(false)
     const listTweet = ref([])
 
-    onMounted(async () => {
+    const handleFormSuccess = () => {
+        getTweet()
+    }
+
+    const getTweet = async () => {
         loading.value = true
         
         try {
@@ -33,6 +37,10 @@
         } finally {
             loading.value = false
         }
+    }
+
+    onMounted(() => {
+        getTweet()
     })
 </script>
 

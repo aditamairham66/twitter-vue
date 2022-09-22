@@ -14,7 +14,8 @@
                 <img :src="image.url" class="w-full rounded-2xl" />
             </div>
 
-            <div class="mt-2">
+            <div class="mt-2" 
+                v-if="!props.hideActions">
                 <TweetItemAction 
                     :tweet="props.tweet" 
                     :compact="props.compact" 
@@ -28,6 +29,7 @@
 
 <script setup>
     const { twitterBorderColor } = useTailwindConfig()
+    const emitt = useEmit()
 
     const props = defineProps({
         tweet: {
@@ -45,7 +47,8 @@
     })
 
     const onClickComment = () => {
-        alert()
+        // alert()
+        emitt.$emit('replyTweet', props.tweet)
     }
 
     const tweetBodyWrapper = computed(() => props.compact ? 'ml-16' : 'ml-2 mt-4')
