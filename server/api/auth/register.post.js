@@ -1,5 +1,5 @@
 import { sendError } from 'h3'
-import { registerUsers } from '../../db/Users.js'
+import { registerUsers } from '../../db/users.js'
 import { userTransformer } from '../../transformers/Users.js'
 
 export default defineEventHandler(async (event) => {

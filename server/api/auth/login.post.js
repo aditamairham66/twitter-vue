@@ -1,5 +1,5 @@
 import { sendError } from 'h3'
-import { findByUsername } from '../../db/Users.js';
+import { findByUsername } from '../../db/users.js';
 import { compareSync } from "bcrypt";
 import { userTransformer } from '../../transformers/Users.js';
 import { saveToken } from '../../db/RefreshToken.js';
