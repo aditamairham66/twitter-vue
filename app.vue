@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-  const { useAuthUser, initAuth, useLoading, signOut, useToggleSignoutModal, setToggleSignoutModal } = useAuth()
+  const { useAuthUser, initAuth, useLoading, useToggleSignoutModal, setToggleSignoutModal } = useAuth()
   const { useTweetToggleModal, setTweetToggleModal, useTweetDataModal, setTweetDataModal } = useTweet()
   const emitt = useEmit()
 
@@ -88,8 +88,7 @@
     setToggleSignoutModal(true)
   }
 
-  const clickLogout = async () => {
-    await signOut()
+  const clickLogout = () => {
     setToggleSignoutModal(false)
   }
 
