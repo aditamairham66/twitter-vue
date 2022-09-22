@@ -1,7 +1,7 @@
 import UrlPattern from "url-pattern"
 import { sendError } from 'h3'
-import { findById } from "../db/Users"
-import { decodeToken } from "../utils/jwt"
+import { decodeToken } from "~~/utils/jwt"
+import { findById } from "~~/db/Users"
 
 export default defineEventHandler(async (event) => {
     const endpoints = [
@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
         '/api/tweet',
 
         // get tweet status
-        // '/api/tweet/:id',
+        '/api/tweet/:id',
     ]
 
     const isHandledByThisMiddleware = endpoints.some(row => {
