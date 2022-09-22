@@ -88,9 +88,9 @@
     setToggleSignoutModal(true)
   }
 
-  const clickLogout = () => {
+  const clickLogout = async () => {
+    await signOut()
     setToggleSignoutModal(false)
-    signOut()
   }
 
   const closeLogout = () => {
