@@ -1,9 +1,9 @@
 import { sendError } from 'h3'
-import { findByUsername } from '~~/server/db/Users'
+import { findByUsername } from '~~/server/db/Users.js'
 import { compareSync } from "bcrypt";
-import { userTransformer } from '~~/server/transformers/Users';
-import { saveToken } from '~~/server/db/RefreshToken';
-import { generateTokens, sendRefreshToken } from '~~/server/utils/jwt';
+import { userTransformer } from '~~/server/transformers/Users.js';
+import { saveToken } from '~~/server/db/RefreshToken.js';
+import { generateTokens, sendRefreshToken } from '~~/server/utils/jwt.js';
 
 export default defineEventHandler(async (event) => {
     const body = await useBody(event)

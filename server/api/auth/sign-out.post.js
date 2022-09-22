@@ -1,5 +1,5 @@
 import { sendError } from 'h3'
-import { deleteByToken } from '~~/server/db/RefreshToken'
+import { deleteByToken } from '~~/server/db/RefreshToken.js'
 
 export default defineEventHandler(async (event) => {
     try {
