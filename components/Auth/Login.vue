@@ -16,12 +16,14 @@
                 <LoadingSpinner/>
             </div>
 
-            <ButtonBasic v-else
-                liquid 
-                :disabled="disabledLogin" 
-                @click="handleLogin">
-                Login
-            </ButtonBasic>
+            <div v-else>
+                <ButtonBasic
+                    liquid 
+                    :disabled="disabledLogin" 
+                    @click="handleLogin">
+                    Login
+                </ButtonBasic>
+            </div>
 
         </div>
     </div>
@@ -37,22 +39,20 @@
 
     const loading = ref(false)
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         loading.value = true
         
         try {
-            login({
+            await login({
                 username: data.username,
                 password: data.password,
             })
         } catch (error) {
-            console.log(error)
+            alert(error.message)
         } finally {
             loading.value = false
         }
     }
-
-    console.log(loading)
 
     const disabledLogin = computed(() => {
         return (!data.username || !data.password)
