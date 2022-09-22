@@ -1,8 +1,8 @@
 import formidable from 'formidable';
-import { saveMedia } from '../../server/db/MediaTweet.js';
-import { saveTweet } from '../../server/db/Tweet.js';
-import { tweetTransformer } from '../../server/transformers/Tweet.js';
-import { uploadFile } from '../../server/utils/cloudinary.js';
+import { saveMedia } from '../../../db/MediaTweet.js';
+import { saveTweet } from '../../../db/Tweet.js';
+import { tweetTransformer } from '../../../transformers/Tweet.js';
+import { uploadFile } from '../../../utils/cloudinary.js';
 
 export default defineEventHandler(async (event) => {
     const form  = formidable({})

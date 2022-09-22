@@ -1,4 +1,4 @@
-import { userTransformer } from "../../server/transformers/Users.js"
+import { userTransformer } from "../../transformers/Users.js"
 
 export default defineEventHandler(async (event) => {
     return {
