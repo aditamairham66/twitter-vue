@@ -42,7 +42,13 @@ npm run preview
 Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
 
 
-### LIVE
+## TECH STACK
+- NUXT 3
+- PRISMA
+- HEADLESSUI
+- TAILWIND
+
+## LIVE
 ```bash
     https://twitter-clone-eta-nine.vercel.app
 ```
